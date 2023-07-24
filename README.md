@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Instuctions
+1. First you have to build the smart contract.
+2. Next, you have to start ganache service at port 7545 (defined in truffle-config.js)
+3. Deploy the smart contract on ganache service.
+4. Connect metamask to ganache server (URL: http://127.0.0.1:7545, ID:1337 -as default)
+5. Import given accounts from ganache to Metamask using private keys.
+6. Owner of the smart contract is the first account
+7. !--IMPORTANT--CHANGE: CONST ADDRESS : '' on App.js to the smart contract address
+
 ## Available Scripts
 
 In the project directory, you can run:
