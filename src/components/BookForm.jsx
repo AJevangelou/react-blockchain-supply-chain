@@ -31,14 +31,14 @@ useEffect(() => {
   // Check connection status and ownership on component mount
   checkConnectionStatus();
    // Call the function to check ownership when the component mounts
-   checkOwnership().then((result) => {
-    setIsOwner(result);
+  checkOwnership().then((result) => {
+  setIsOwner(result);
 
-    // Add event listener for account changes
-    window.ethereum.on('accountsChanged', handleAccountChange);
+  // Add event listener for account changes
+  window.ethereum.on('accountsChanged', handleAccountChange);
 
-    // Clean up the event listener on component unmount
-    return () => {
+  // Clean up the event listener on component unmount
+  return () => {
       window.ethereum.removeListener('accountsChanged', handleAccountChange);
     };
   });
