@@ -43,36 +43,37 @@ export default function ShipmentTransfers(props) {
             const contract = new ethers.Contract(props.contractAddress, props.abi, signer);
       
             const shipmentStatus = await contract.getShipmentStatus(values.shipmentId);
-            console.log(shipmentStatus[5]);
+
             const booktitles = shipmentStatus[6];
-            console.log(shipmentStatus[6].length);
-            let bookLength = booktitles.length; // Fix 1: Use booktitles.length instead of shipmentStatus[6].bookLength
-            console.log(shipmentStatus[6][0].title);
-            console.log(shipmentStatus[6][1]);
-            console.log(booktitles);
+            
+            let bookLength = booktitles.length; 
             //Create an empty string to store copies of each book
             
             // Create an empty string to store the messages
             let combinedMessage = "";
+            const expectedDelivery = shipmentStatus[4];
+            const dateOfDeparture = shipmentStatus[3];
+            console.log(expectedDelivery);
+
 
             // Iterate over the 'booktitles' array
             for (let i = 0; i < bookLength; i++) {
               // Access the 'title' and 'numberOfBooks' properties of each book object
               const title = booktitles[i].title;
               const numberOfBooks = booktitles[i].numberOfBooks;
-
+              
               // Append the title and number of books to the combined message
               combinedMessage += `Title: ${title} - Copies: ${numberOfBooks}\n`;
             }
 
             if (shipmentStatus[5] === 0){
-              alert('Your shipment is at the factory' + combinedMessage);
+              alert('Your shipment is at the factory' + combinedMessage + `\n Departure Date: ${dateOfDeparture}` + `\n Expected Delivery: ${expectedDelivery}`);
             } else if (shipmentStatus[5] === 1){
-              alert('Your shipment has been shipped from the factory.\n' +combinedMessage );
+              alert('Your shipment has been shipped from the factory.\n' + combinedMessage + `\n Departure Date: ${dateOfDeparture}` +`\n Expected Delivery: ${expectedDelivery}`);
             }else if (shipmentStatus[5] === 2){
-              alert('Your shipment is out for delivery.\n' + combinedMessage);
+              alert('Your shipment is out for delivery.\n' + combinedMessage + `\n Departure Date: ${dateOfDeparture}` +`\n Expected Delivery: ${expectedDelivery}`);
             }else if (shipmentStatus[5] === 3){
-              alert('Your shipment has already been delivered.\n' + combinedMessage);
+              alert('Your shipment has already been delivered.\n' + combinedMessage + `\n Departure Date: ${dateOfDeparture}` +`\n Expected Delivery: ${expectedDelivery}`);
             }else{
               alert('Check if the shipment with this ID exists');
             }
