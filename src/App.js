@@ -400,7 +400,7 @@ function App() {
       "constant": true
     }
   ];
-  const address = '0x955832cd65e5958B82F2A7824716921D730dDEa5';
+  const address = '0x49FA8f837bA23cE5B850f756D78b582B0d4b2Ad8';
   return (
     <BrowserRouter>
     <MyToolbar contractAddress = {address} abi = {abi}/>
